@@ -1,1 +1,1 @@
-# SpringMvcHibernateXML
+# paymentsSpringMVCHibernate
