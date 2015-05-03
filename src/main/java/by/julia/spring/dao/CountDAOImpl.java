@@ -31,38 +31,38 @@ public class CountDAOImpl implements CountDAO {
 	@Transactional
 	public List<Count> list() {
 		@SuppressWarnings("unchecked")
-		List<Count> listUser = (List<Count>) sessionFactory.getCurrentSession()
+		List<Count> listCount = (List<Count>) sessionFactory.getCurrentSession()
 				.createCriteria(Count.class)
 				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
 
-		return listUser;
+		return listCount;
 	}
 
 	@Override
 	@Transactional
-	public void saveOrUpdate(Count user) {
-		sessionFactory.getCurrentSession().saveOrUpdate(user);
+	public void saveOrUpdate(Count count) {
+		sessionFactory.getCurrentSession().saveOrUpdate(count);
 	}
 
 	@Override
 	@Transactional
 	public void delete(int id) {
-		Count userToDelete = new Count();
-		userToDelete.setId(id);
-		sessionFactory.getCurrentSession().delete(userToDelete);
+		Count countToDelete = new Count();
+		countToDelete.setId(id);
+		sessionFactory.getCurrentSession().delete(countToDelete);
 	}
 
 	@Override
 	@Transactional
 	public Count get(int id) {
-		String hql = "from User where id=" + id;
+		String hql = "from Count where id=" + id;
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 
 		@SuppressWarnings("unchecked")
-		List<Count> listUser = (List<Count>) query.list();
+		List<Count> listCount = (List<Count>) query.list();
 
-		if (listUser != null && !listUser.isEmpty()) {
-			return listUser.get(0);
+		if (listCount != null && !listCount.isEmpty()) {
+			return listCount.get(0);
 		}
 
 		return null;

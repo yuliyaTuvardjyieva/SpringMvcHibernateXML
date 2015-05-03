@@ -12,6 +12,10 @@ import javax.sql.DataSource;
 
 
 
+
+
+
+
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +30,18 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 
 
+
+
+
+
+import by.julia.spring.dao.CardDAO;
+import by.julia.spring.dao.CardDAOImpl;
 import by.julia.spring.dao.CountDAO;
 import by.julia.spring.dao.CountDAOImpl;
 import by.julia.spring.dao.UserDAO;
 import by.julia.spring.dao.UserDAOImpl;
+import by.julia.spring.model.Card;
+import by.julia.spring.model.Count;
 import by.julia.spring.model.User;
 
 @Configuration
@@ -69,7 +81,7 @@ public class ApplicationContextConfig {
     public SessionFactory getSessionFactory(DataSource dataSource) {
     	LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
     	sessionBuilder.addProperties(getHibernateProperties());
-    	sessionBuilder.addAnnotatedClasses(User.class);
+    	sessionBuilder.addAnnotatedClasses(User.class, Count.class, Card.class);
     	return sessionBuilder.buildSessionFactory();
     }
     
@@ -93,5 +105,11 @@ public class ApplicationContextConfig {
     @Bean(name = "countDao")
     public CountDAO getCountDao(SessionFactory sessionFactory) {
     	return new CountDAOImpl(sessionFactory);
+    }
+    
+    @Autowired
+    @Bean(name = "cardDao")
+    public CardDAO getCardDao(SessionFactory sessionFactory) {
+    	return new CardDAOImpl(sessionFactory);
     }
 }

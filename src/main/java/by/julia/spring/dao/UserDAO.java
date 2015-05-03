@@ -5,6 +5,7 @@ import java.util.List;
 import by.julia.spring.model.User;
 
 public interface UserDAO {
+
 	public List<User> list();
 	
 	public User get(int id);

@@ -10,8 +10,8 @@
     </head>
     <body>
         <div align="center">
-	        <h1>Users List</h1>
-	        <h2><a href="new">New User</a></h2>
+	        <h1>Count List</h1>
+	        <h2><a href="new">New Count</a></h2>
 	        
         	<table border="1">
 	        	<th>No</th>
